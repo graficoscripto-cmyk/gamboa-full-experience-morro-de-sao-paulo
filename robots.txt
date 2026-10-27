@@ -25,4 +25,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://gamboa-full-experience-morro-de-sao-paulo.vercel.app/sitemap.xml
+Sitemap: https://gamboa-full-experience-morro-de-sao.vercel.app/sitemap.xml
