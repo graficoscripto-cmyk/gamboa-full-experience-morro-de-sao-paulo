@@ -189,38 +189,10 @@
         "@type": "FAQPage",
         "@id": "https://gamboa-full-experience-morro-de-sao.vercel.app/#faq",
         "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Como funciona o passeio Gamboa Full Experience (Tour Gamboa 6x6)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "O passeio começa com embarque no receptivo da Terceira Praia em Morro de São Paulo a bordo do caminhão militar 6x6. O roteiro guiado passa pela trilha e Cachoeira Fonte do Céu, pelos Mirantes Panorâmicos (Balanço Infinito, Asas da Gamboa e Ninho Gigante), pelo Paredão de Argila e inclui cerca de 3 horas livres na Praia da Gamboa, finalizando com retorno de barco no pôr do sol (com parada na Ilha da Coroa conforme a maré)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Qual é o horário de saída e duração do Tour Gamboa 6x6?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "As saídas acontecem pela manhã (geralmente entre 9h30 e 10h00, ajustadas conforme a tábua de marés do dia) a partir da Terceira Praia, e o retorno de barco acontece no fim da tarde após o pôr do sol, por volta das 17h30."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "O passeio é indicado para crianças e idosos?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sim! A expedição no caminhão 6x6 é segura e acompanhada por guias experientes em todo o percurso. A trilha para a Fonte do Céu é curta e sombreada pela Mata Atlântica, sendo um passeio excelente para famílias, casais e grupos de todas as idades."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Como faço para reservar minha vaga no Gamboa Full Experience?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Como os lugares no caminhão militar 6x6 são limitados por saída, recomendamos reservar com antecedência diretamente pelo WhatsApp oficial (75) 99884-3134."
-            }
-          }
+          { "@type": "Question", "name": "Como funciona o roteiro?", "acceptedAnswer": { "@type": "Answer", "text": "Saída pela manhã da Terceira Praia no caminhão 6x6. Cachoeira, mirantes, argila, 3 horas na praia e volta de barco no pôr do sol." } },
+          { "@type": "Question", "name": "Qual o horário?", "acceptedAnswer": { "@type": "Answer", "text": "Saída entre 09h30 e 10h00, conforme a maré. Retorno por volta das 17h30." } },
+          { "@type": "Question", "name": "Crianças e idosos podem ir?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Banco confortável, guia o tempo todo e trilha curta." } },
+          { "@type": "Question", "name": "O que levar?", "acceptedAnswer": { "@type": "Answer", "text": "Roupa de banho, toalha, protetor, chinelo ou calçado de trilha e celular carregado." } }
         ]
       }
     ]
@@ -268,13 +240,6 @@
       overflow-x: hidden;
       line-height: 1.55;
       background-color: var(--bg-deep);
-      padding-bottom: 84px;
-    }
-
-    @media (min-width: 1024px) {
-      body {
-        padding-bottom: 0;
-      }
     }
 
     h1, h2, h3, h4, .font-display {
@@ -308,13 +273,44 @@
       left: 0;
       right: 0;
       z-index: 90;
-      padding: 12px 0;
+      padding: max(10px, env(safe-area-inset-top)) 0 10px;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: transform 0.35s cubic-bezier(.22,1,.36,1), background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .navbar.vidro {
       background: rgba(14, 29, 20, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: all 0.3s ease;
+      border-bottom-color: var(--border-subtle);
     }
+
+    .navbar.some { transform: translateY(-110%); }
+
+    .wa-fab {
+      position: fixed;
+      right: calc(16px + env(safe-area-inset-right));
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      z-index: 95;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease;
+    }
+    .wa-fab:active { transform: scale(0.94); }
+    .wa-fab svg { width: 32px; height: 32px; }
+
+    .selo-g { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+    .selo-google { display: flex; flex-direction: column; align-items: center; padding: 26px 34px 22px; border-radius: 28px; background: var(--bg-card); border: 1px solid var(--border-light); }
+    .selo-n { font-family: 'Big Shoulders Stencil Display', 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 5.6rem; line-height: 0.95; color: var(--amber-bright); }
+    .selo-s { color: #FFD166; letter-spacing: 4px; font-size: 1.2rem; margin: 6px 0 4px; }
+    .selo-t { font-weight: 700; color: #E5ECE7; }
 
     .nav-inner {
       display: flex;
@@ -1116,15 +1112,15 @@
 
     /* Footer */
     .footer {
-      padding: 40px 0;
+      padding: 40px 0 96px;
       border-top: 1px solid var(--border-subtle);
       font-size: 0.85rem;
       color: var(--text-muted);
       text-align: center;
     }
 
-    /* Sticky Mobile Bottom Bar (Android First) */
-    .mobile-sticky-bar {
+    /* Sticky Mobile Bottom Bar (substituida pelo balao .wa-fab) */
+    .mobile-sticky-bar-old {
       position: fixed;
       bottom: 0;
       left: 0;
@@ -1140,11 +1136,7 @@
       gap: 12px;
     }
 
-    @media (min-width: 1024px) {
-      .mobile-sticky-bar {
-        display: none;
-      }
-    }
+
 
     .sticky-info {
       display: flex;
@@ -1246,7 +1238,7 @@
         <img src="assets/images/logo.png" alt="Logo Gamboa Full Experience" class="brand-logo" width="44" height="44" />
         <div class="brand-text">
           <span class="brand-name">gamboa</span>
-          <span class="brand-sub">Full Experience • 6x6</span>
+          <span class="brand-sub">Full Experience</span>
         </div>
       </a>
 
@@ -1283,9 +1275,7 @@
             Descubra a Gamboa a bordo do <span class="acc">Caminhão Militar 6x6</span>
           </h1>
 
-          <p class="hero-lead">
-            A expedição mais autêntica de Morro de São Paulo: trilha na Mata Atlântica, Cachoeira Fonte do Céu, Mirantes Instagramáveis (Balanço Infinito, Asas & Ninho), Paredão de Argila e volta de barco no pôr do sol.
-          </p>
+          <p class="hero-lead">Trilha, cachoeira, mirantes e volta de barco no pôr do sol.</p>
 
           <div class="hero-cta-group">
             <a href="https://wa.me/5575998843134?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20consultar%20vagas%20para%20o%20Tour%20Gamboa%206x6!" target="_blank" rel="noopener noreferrer" class="btn-amber btn-hero">
@@ -1299,15 +1289,15 @@
           <div class="hero-badges">
             <div class="badge-item">
               <span class="badge-val">6 Paradas</span>
-              <span class="badge-label">Terra, Trilha & Mar</span>
+              <span class="badge-label">Terra, trilha e mar</span>
             </div>
             <div class="badge-item">
-              <span class="badge-val">Ida 6x6 + Volta Barco</span>
-              <span class="badge-label">Roteiro Exclusivo</span>
+              <span class="badge-val">Ida 6x6 + barco</span>
+              <span class="badge-label">Roteiro exclusivo</span>
             </div>
             <div class="badge-item">
               <span class="badge-val">Guia Local</span>
-              <span class="badge-label">Suporte & Fotos</span>
+              <span class="badge-label">Suporte e fotos</span>
             </div>
           </div>
         </div>
@@ -1315,11 +1305,9 @@
         <div class="hero-card gs-reveal">
           <img src="assets/images/truck-6x6.jpg" alt="Caminhão Militar 6x6 REO M35 do passeio Gamboa Full Experience" class="hero-card-img" width="1200" height="1600" />
           <div>
-            <span class="hero-card-tag">Exclusivo na Ilha</span>
-            <h2 class="hero-card-title">Caminhão Militar 6x6 Panorâmico</h2>
-            <p class="hero-card-desc">
-              Embarque na Terceira Praia em veículo militar histórico aberto, cortando as trilhas preservadas da Ilha de Tinharé com total segurança e adrenalina.
-            </p>
+            <span class="hero-card-tag">Exclusivo na ilha</span>
+            <h2 class="hero-card-title">Caminhão Militar 6x6</h2>
+            <p class="hero-card-desc">Embarque na Terceira Praia, em caminhão militar aberto.</p>
           </div>
         </div>
       </div>
@@ -1337,11 +1325,9 @@
     <section id="roteiro" class="section section-sand">
       <div class="container">
         <div class="section-header gs-reveal">
-          <span class="eyebrow">Passo a Passo do Passeio</span>
-          <h2 class="section-title">Um Dia Inteiro, 6 Experiências Inesquecíveis</h2>
-          <p class="section-subtitle">
-            O único passeio de Morro de São Paulo que combina aventura off-road pela mata, cachoeira, mirantes nas alturas, praia paradisíaca e navegação ao pôr do sol.
-          </p>
+          <span class="eyebrow">O passeio</span>
+          <h2 class="section-title">Um dia, 6 paradas</h2>
+          <p class="section-subtitle">Mata, cachoeira, mirantes, praia e mar.</p>
         </div>
 
         <div class="rota gs-reveal" aria-hidden="true" id="rota">
@@ -1362,12 +1348,10 @@
               <span class="stop-num">PARADA 01</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">Embarque Off-Road no 6x6 Militar</h3>
-              <p class="stop-desc">
-                Saída do nosso receptivo na Terceira Praia a bordo do imponente caminhão militar 6x6 aberto, cruzando estradas de areia e vegetação nativa.
-              </p>
+              <h3 class="stop-title">Embarque no 6x6</h3>
+              <p class="stop-desc">Saída da Terceira Praia no 6x6 militar aberto.</p>
               <div class="stop-meta">
-                <span>📍 Saída: Terceira Praia • Guia Credenciado</span>
+                <span>📍 Terceira Praia • Guia</span>
               </div>
             </div>
           </article>
@@ -1379,12 +1363,10 @@
               <span class="stop-num">PARADA 02</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">Trilha & Cachoeira Fonte do Céu</h3>
-              <p class="stop-desc">
-                Caminhada ecológica leve pela Mata Atlântica preservada até a queda d'água cristalina da Fonte do Céu para um banho doce e revigorante.
-              </p>
+              <h3 class="stop-title">Cachoeira Fonte do Céu</h3>
+              <p class="stop-desc">Trilha curta na mata até a cachoeira. Banho de água doce.</p>
               <div class="stop-meta">
-                <span>🌿 Trilha sombreada • Banho de cachoeira</span>
+                <span>🌿 Trilha sombreada</span>
               </div>
             </div>
           </article>
@@ -1396,12 +1378,10 @@
               <span class="stop-num">PARADA 03</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">Mirantes: Asas, Ninho & Balanço Infinito</h3>
-              <p class="stop-desc">
-                Acesso aos mirantes mais disputados da Bahia: voe no Balanço Infinito sobre o mar e faça fotos épicas nas Asas da Gamboa e no Ninho Gigante.
-              </p>
+              <h3 class="stop-title">Mirantes e Balanço Infinito</h3>
+              <p class="stop-desc">Balanço Infinito, Asas e Ninho. Fotos de cima do mar.</p>
               <div class="stop-meta">
-                <span>📸 Cenários exclusivos @visitegamboa</span>
+                <span>📸 @visitegamboa</span>
               </div>
             </div>
           </article>
@@ -1413,12 +1393,10 @@
               <span class="stop-num">PARADA 04</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">Paredão de Argila Medicinal</h3>
-              <p class="stop-desc">
-                Parada tradicional na falésia natural de argila rosa e amarela à beira-mar. Ritual esfoliante que deixa a pele renovada e macia na hora.
-              </p>
+              <h3 class="stop-title">Paredão de Argila</h3>
+              <p class="stop-desc">Falésia de argila à beira-mar. Pele macia na hora.</p>
               <div class="stop-meta">
-                <span>✨ Spa natural à beira-mar</span>
+                <span>✨ Argila natural</span>
               </div>
             </div>
           </article>
@@ -1430,12 +1408,10 @@
               <span class="stop-num">PARADA 05</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">3 Horas Livres na Praia da Gamboa</h3>
-              <p class="stop-desc">
-                Tempo de sobra para relaxar em águas super calmas e mornas, sem ondas fortes, com excelentes restaurantes pé na areia e gastronomia típica.
-              </p>
+              <h3 class="stop-title">3 horas na Praia da Gamboa</h3>
+              <p class="stop-desc">Água calma, restaurantes pé na areia.</p>
               <div class="stop-meta">
-                <span>🏖️ Águas calmas • Gastronomia local</span>
+                <span>🏖️ Águas calmas</span>
               </div>
             </div>
           </article>
@@ -1447,12 +1423,10 @@
               <span class="stop-num">PARADA 06</span>
             </div>
             <div class="stop-body">
-              <h3 class="stop-title">Volta de Barco no Pôr do Sol & Coroa</h3>
-              <p class="stop-desc">
-                Encerramento cinematográfico navegando de barco de volta ao Morro de São Paulo no entardecer, com parada no banco de areia da Ilha da Coroa (conforme a maré).
-              </p>
+              <h3 class="stop-title">Volta de barco no pôr do sol</h3>
+              <p class="stop-desc">Volta de barco ao entardecer, com parada na Ilha da Coroa (conforme a maré).</p>
               <div class="stop-meta">
-                <span>🌅 Pôr do sol no mar • Retorno ao Cais</span>
+                <span>🌅 Retorno ao cais</span>
               </div>
             </div>
           </article>
@@ -1465,19 +1439,17 @@
     <section id="mirantes" class="section">
       <div class="container">
         <div class="section-header gs-reveal">
-          <span class="eyebrow">Galeria Real em Alta Definição</span>
-          <h2 class="section-title">Os Cenários Mais Fotogênicos da Ilha</h2>
-          <p class="section-subtitle">
-            Fotos reais de clientes durante o passeio. Nossos guias conhecem os melhores ângulos e ajudam você a registrar fotos e vídeos de tirar o fôlego.
-          </p>
+          <span class="eyebrow">Fotos reais</span>
+          <h2 class="section-title">Cenários da ilha</h2>
+          <p class="section-subtitle">Nossos guias ajudam nas fotos.</p>
         </div>
 
         <div class="bento-grid">
           <div class="bento-item bento-span-7 gs-reveal">
             <img src="assets/images/hero-balanco-4k.jpg" alt="Balanço Infinito com vista panorâmica do oceano em Gamboa" loading="lazy" width="2560" height="1920" />
             <div class="bento-caption">
-              <span class="bento-tag">Adrenalina & Liberdade</span>
-              <h3 class="bento-title">Balanço Infinito sobre a Mata e o Mar Turquesa</h3>
+              <span class="bento-tag">Adrenalina</span>
+              <h3 class="bento-title">Balanço Infinito</h3>
             </div>
           </div>
 
@@ -1485,41 +1457,39 @@
             <img src="assets/images/ninho-mirante-4k.jpg" alt="Ninho gigante artesanal no mirante @visitegamboa" loading="lazy" width="1800" height="2400" />
             <div class="bento-caption">
               <span class="bento-tag">Mirante @visitegamboa</span>
-              <h3 class="bento-title">Ninho Gigante Panorâmico</h3>
+              <h3 class="bento-title">Ninho Gigante</h3>
             </div>
           </div>
 
           <div class="bento-item bento-span-5 gs-reveal">
             <img src="assets/images/coroa-aerea.jpg" alt="Vista aérea do banco de areia da Ilha da Coroa ao pôr do sol" loading="lazy" width="1080" height="1370" />
             <div class="bento-caption">
-              <span class="bento-tag">Fim de Tarde Dourado</span>
-              <h3 class="bento-title">Banco de Areia da Ilha da Coroa</h3>
+              <span class="bento-tag">Fim de tarde</span>
+              <h3 class="bento-title">Ilha da Coroa</h3>
             </div>
           </div>
         </div>
 
         <div class="specs-bar gs-reveal">
           <div>
-            <span class="eyebrow">Vagas Limitadas por Saída</span>
+            <span class="eyebrow">Vagas limitadas</span>
             <h3 style="font-size: 2.1rem; font-weight: 800; margin-bottom: 8px;">
-              Pronto para viver o Gamboa Full Experience?
+              Vamos embarcar?
             </h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Como o transporte é feito no nosso caminhão militar 6x6 original, os assentos esgotam rápido. Chame agora no WhatsApp e confirme a disponibilidade para os dias da sua viagem.
-            </p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Confirme a vaga pelo WhatsApp.</p>
             <div class="specs-list">
-              <div class="spec-pill"><span class="spec-dot"></span><span>Caminhão 6x6 Exclusivo</span></div>
-              <div class="spec-pill"><span class="spec-dot"></span><span>Barco de Retorno Incluso</span></div>
-              <div class="spec-pill"><span class="spec-dot"></span><span>Guia Acompanhante</span></div>
-              <div class="spec-pill"><span class="spec-dot"></span><span>Famílias, Casais e Grupos</span></div>
+              <div class="spec-pill"><span class="spec-dot"></span><span>Caminhão 6x6</span></div>
+              <div class="spec-pill"><span class="spec-dot"></span><span>Barco de volta</span></div>
+              <div class="spec-pill"><span class="spec-dot"></span><span>Guia</span></div>
+              <div class="spec-pill"><span class="spec-dot"></span><span>Famílias e grupos</span></div>
             </div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 12px; align-items: stretch;">
             <a href="https://wa.me/5575998843134?text=Ol%C3%A1!%20Quero%20saber%20os%20valores%20e%20reservar%20o%20passeio%20Gamboa%20Full%20Experience%20(Tour%206x6)." target="_blank" rel="noopener noreferrer" class="btn-amber" style="padding: 16px 24px; font-size: 1.05rem;">
-              <span>Falar com Atendimento no WhatsApp</span>
+              <span>Chamar no WhatsApp</span>
             </a>
             <span style="text-align: center; font-size: 0.78rem; color: var(--text-muted);">
-              Atendimento rápido todos os dias das 08h às 22h • (75) 99884-3134
+              Todos os dias, 08h às 22h • (75) 99884-3134
             </span>
           </div>
         </div>
@@ -1531,52 +1501,18 @@
     <section id="avaliacoes" class="section section-forest">
       <div class="container">
         <div class="section-header gs-reveal">
-          <span class="eyebrow">Nota Máxima no Google Maps</span>
-          <h2 class="section-title">5.0 ★ com 175 Avaliações Verificadas</h2>
-          <p class="section-subtitle">
-            Veja o que quem já embarcou no Tour Gamboa 6x6 diz sobre a estrutura, os mirantes e o atendimento da nossa equipe.
-          </p>
+          <span class="eyebrow">Google Maps</span>
+          <h2 class="section-title">Nota máxima</h2>
+          
         </div>
 
-        <div class="reviews-grid">
-          <article class="review-card gs-reveal">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-quote" style="margin-top: 12px;">
-                "Melhor passeio que fizemos em Morro de São Paulo! Ir no caminhão 6x6 por dentro da ilha é uma aventura única, os mirantes do balanço e das asas rendem fotos perfeitas e voltar de barco no pôr do sol fecha com chave de ouro."
-              </p>
-            </div>
-            <div class="review-author">
-              <span class="review-name">Avaliação de Cliente</span>
-              <span class="review-source">Google Maps • 5.0 ★</span>
-            </div>
-          </article>
-
-          <article class="review-card gs-reveal">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-quote" style="margin-top: 12px;">
-                "Organização impecável desde a saída na Terceira Praia. Os guias são super atenciosos, tiram fotos incríveis da gente no Ninho e no Balanço Infinito, e a parada na Fonte do Céu e na argila valem cada segundo!"
-              </p>
-            </div>
-            <div class="review-author">
-              <span class="review-name">Avaliação de Cliente</span>
-              <span class="review-source">Google Maps • 5.0 ★</span>
-            </div>
-          </article>
-
-          <article class="review-card gs-reveal">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-quote" style="margin-top: 12px;">
-                "Fomos em família e todos amaram! A Praia da Gamboa é uma piscina natural deliciosa para almoçar e descansar, e o pôr do sol na volta de barco passando pela Coroa é simplesmente inesquecível."
-              </p>
-            </div>
-            <div class="review-author">
-              <span class="review-name">Avaliação de Cliente</span>
-              <span class="review-source">Google Maps • 5.0 ★</span>
-            </div>
-          </article>
+        <div class="selo-g gs-reveal">
+          <div class="selo-google" role="img" aria-label="Nota 5.0 com 175 avaliações no Google">
+            <span class="selo-n">5.0</span>
+            <span class="selo-s">★★★★★</span>
+            <span class="selo-t">175 avaliações no Google</span>
+          </div>
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJZ0AVtohpPgcRJ5jhomAeDQc" target="_blank" rel="noopener noreferrer" class="btn-outline"><span>Ver no Google Maps</span></a>
         </div>
       </div>
     </section>
@@ -1586,52 +1522,42 @@
     <section id="faq" class="section section-sand">
       <div class="container">
         <div class="section-header gs-reveal" style="text-align: center; max-width: 680px; margin-left: auto; margin-right: auto;">
-          <span class="eyebrow">Perguntas Frequentes</span>
-          <h2 class="section-title">Tudo Sobre o Tour Gamboa 6x6</h2>
-          <p class="section-subtitle" style="margin: 0 auto;">
-            Tire suas dúvidas antes de embarcar na experiência mais completa entre Morro de São Paulo e Gamboa do Morro.
-          </p>
+          <span class="eyebrow">Dúvidas</span>
+          <h2 class="section-title">Dúvidas rápidas</h2>
+          
         </div>
 
         <div class="faq-list gs-reveal">
           <details class="faq-item" open>
             <summary>
-              <span>Como funciona o roteiro do Gamboa Full Experience (Tour 6x6)?</span>
+              <span>Como funciona o roteiro?</span>
               <span class="faq-icon">+</span>
             </summary>
-            <p class="faq-answer">
-              Você embarca pela manhã no nosso receptivo na Terceira Praia a bordo do caminhão militar 6x6. Visitamos a Trilha e Cachoeira Fonte do Céu, os Mirantes Panorâmicos (Balanço Infinito, Asas da Gamboa e Ninho Gigante) e o Paredão de Argila. Depois, você aproveita 3 horas livres na Praia da Gamboa e retorna de barco ao entardecer contemplando o pôr do sol (com parada na Ilha da Coroa conforme a maré) até o cais de Morro de São Paulo.
-            </p>
+            <p class="faq-answer">Saída pela manhã da Terceira Praia no caminhão 6x6. Cachoeira, mirantes, argila, 3 horas na praia e volta de barco no pôr do sol.</p>
           </details>
 
           <details class="faq-item">
             <summary>
-              <span>Qual é o horário de saída e de retorno?</span>
+              <span>Qual o horário?</span>
               <span class="faq-icon">+</span>
             </summary>
-            <p class="faq-answer">
-              As saídas ocorrem pela manhã (geralmente entre 09h30 e 10h00, podendo ter pequenos ajustes de acordo com a tábua de marés do dia para melhor aproveitamento do Paredão de Argila e da Coroa). O retorno de barco chega ao cais de Morro de São Paulo logo após o pôr do sol, por volta das 17h30.
-            </p>
+            <p class="faq-answer">Saída entre 09h30 e 10h00, conforme a maré. Retorno por volta das 17h30.</p>
           </details>
 
           <details class="faq-item">
             <summary>
-              <span>Crianças e idosos podem fazer o passeio?</span>
+              <span>Crianças e idosos podem ir?</span>
               <span class="faq-icon">+</span>
             </summary>
-            <p class="faq-answer">
-              Sim! O caminhão 6x6 possui bancos confortáveis e cobertura, e todo o trajeto é acompanhado por guias locais prestativos. A trilha até a Fonte do Céu é curta e leve, tornando o passeio perfeito para todas as idades.
-            </p>
+            <p class="faq-answer">Sim. Banco confortável, guia o tempo todo e trilha curta.</p>
           </details>
 
           <details class="faq-item">
             <summary>
-              <span>O que levar para o passeio?</span>
+              <span>O que levar?</span>
               <span class="faq-icon">+</span>
             </summary>
-            <p class="faq-answer">
-              Recomendamos roupa de banho, toalha, protetor solar, óculos de sol, chinelo ou calçado confortável para a trilha ecológica e celular/câmera com bateria carregada para aproveitar os mirantes instagramáveis.
-            </p>
+            <p class="faq-answer">Roupa de banho, toalha, protetor, chinelo ou calçado de trilha e celular carregado.</p>
           </details>
         </div>
       </div>
@@ -1642,11 +1568,9 @@
     <section id="localizacao" class="section">
       <div class="container">
         <div class="section-header gs-reveal">
-          <span class="eyebrow">Localização & Contato Oficial</span>
-          <h2 class="section-title">Ponto de Encontro e Reservas</h2>
-          <p class="section-subtitle">
-            Fale diretamente com a equipe oficial da Gamboa Full Experience (`@visitegamboa`) para garantir seu lugar.
-          </p>
+          <span class="eyebrow">Embarque</span>
+          <h2 class="section-title">Onde nos achar</h2>
+          <p class="section-subtitle">Fale com a equipe @visitegamboa.</p>
         </div>
 
         <div class="location-grid">
@@ -1655,16 +1579,16 @@
               <div class="info-row">
                 <div class="info-icon">📍</div>
                 <div>
-                  <div class="info-label">Endereço Oficial</div>
+                  <div class="info-label">Endereço</div>
                   <div class="info-value">Caminho da Fonte do Céu, 01 - Morro de São Paulo, Cairu - BA, 45428-000</div>
-                  <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Embarque no receptivo da Terceira Praia</div>
+                  
                 </div>
               </div>
 
               <div class="info-row">
                 <div class="info-icon">📱</div>
                 <div>
-                  <div class="info-label">WhatsApp & Telefone</div>
+                  <div class="info-label">WhatsApp</div>
                   <div class="info-value">(75) 99884-3134</div>
                 </div>
               </div>
@@ -1672,15 +1596,15 @@
               <div class="info-row">
                 <div class="info-icon">🕒</div>
                 <div>
-                  <div class="info-label">Horário de Atendimento</div>
-                  <div class="info-value">Todos os dias, das 08:00 às 22:00</div>
+                  <div class="info-label">Atendimento</div>
+                  <div class="info-value">Todos os dias, 08h às 22h</div>
                 </div>
               </div>
 
               <div class="info-row">
                 <div class="info-icon">📸</div>
                 <div>
-                  <div class="info-label">Instagram Oficial</div>
+                  <div class="info-label">Instagram</div>
                   <div class="info-value">
                     <a href="https://www.instagram.com/visitegamboa/" target="_blank" rel="noopener noreferrer" style="color: var(--amber-bright); text-decoration: underline;">@visitegamboa</a>
                   </div>
@@ -1690,7 +1614,7 @@
 
             <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
               <a href="https://wa.me/5575998843134?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20reservar%20o%20passeio%20Gamboa%20Full%20Experience%20(Tour%20Gamboa%206x6)." target="_blank" rel="noopener noreferrer" class="btn-amber" style="width: 100%; padding: 15px;">
-                <span>Reservar Agora via WhatsApp</span>
+                <span>Reservar no WhatsApp</span>
               </a>
               <a href="https://www.google.com/maps/place/?q=place_id:ChIJZ0AVtohpPgcRJ5jhomAeDQc" target="_blank" rel="noopener noreferrer" class="btn-outline" style="width: 100%; padding: 12px; font-size: 0.88rem;">
                 <span>Abrir no Google Maps</span>
@@ -1727,16 +1651,10 @@
     </div>
   </footer>
 
-  <!-- Sticky Mobile Bottom Bar -->
-  <div class="mobile-sticky-bar" role="region" aria-label="Reserva Rápida pelo WhatsApp">
-    <div class="sticky-info">
-      <span class="sticky-title">Tour Gamboa 6x6</span>
-      <span class="sticky-sub">★ 5.0 (175 avaliações) • Vagas Limitadas</span>
-    </div>
-    <a href="https://wa.me/5575998843134?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20reservar%20o%20passeio%20Gamboa%20Full%20Experience%20(Tour%206x6)." target="_blank" rel="noopener noreferrer" class="btn-sticky">
-      <span>WhatsApp</span>
-    </a>
-  </div>
+  <!-- Balao WhatsApp -->
+  <a class="wa-fab" href="https://wa.me/5575998843134?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20reservar%20o%20passeio%20Gamboa%20Full%20Experience%20(Tour%206x6)." target="_blank" rel="noopener noreferrer" aria-label="Chamar no WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C8.84 3 3 8.83 3 16c0 2.3.6 4.55 1.74 6.52L3 29l6.65-1.7A13 13 0 0 0 16.04 29C23.2 29 29 23.17 29 16S23.2 3 16.04 3zm0 23.6c-1.95 0-3.86-.53-5.53-1.52l-.4-.24-3.95 1.01 1.05-3.84-.26-.4A10.5 10.5 0 0 1 5.4 16c0-5.8 4.76-10.55 10.64-10.55S26.6 10.2 26.6 16 21.9 26.6 16.04 26.6zm5.8-7.9c-.32-.16-1.88-.93-2.17-1.03-.29-.1-.5-.16-.72.16-.2.32-.82 1.03-1 1.24-.19.2-.37.23-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.9-1.78-2.2-.19-.32-.02-.5.14-.65.14-.14.32-.37.48-.56.16-.19.2-.32.32-.54.1-.2.05-.4-.03-.56-.08-.16-.72-1.74-1-2.38-.26-.62-.52-.54-.72-.55h-.6c-.2 0-.56.08-.85.4-.3.32-1.12 1.1-1.12 2.68s1.15 3.1 1.3 3.32c.16.2 2.26 3.45 5.47 4.83.76.33 1.36.52 1.82.67.77.24 1.47.2 2.02.12.62-.09 1.88-.77 2.14-1.51.27-.75.27-1.38.19-1.51-.08-.14-.3-.22-.62-.38z"/></svg>
+  </a>
 
   <!-- GSAP & ScrollTrigger Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -1829,10 +1747,14 @@
       if (calmo) rotaP(1); else rotaP(0);
 
       /* parallax + rota na rolagem */
+      var nav = d.querySelector('.navbar'), last = 0;
       var hero = d.querySelector('.hero'), heroImg = d.querySelector('.hero-bg img'), tick = false;
       function onScroll() {
         tick = false;
         var y = w.scrollY || 0, vh = w.innerHeight;
+        nav.classList.toggle('vidro', y > 40);
+        if (y > 120 && y > last + 4) nav.classList.add('some'); else if (y < last - 4 || y < 120) nav.classList.remove('some');
+        last = y;
         if (calmo) return;
         heroImg.style.setProperty('--py', Math.min(y * 0.1, hero.offsetHeight * 0.07) + 'px');
         var r = rota.getBoundingClientRect();
